@@ -1,0 +1,17 @@
+{
+  "rules": {
+     "color-hex-case": "lower",
+    "color-hex-length": "long",
+    "color-named": "always-where-possible",
+    "color-no-invalid-hex": true,
+    "font-family-name-quotes": "always-where-recommended",
+    "font-family-no-duplicate-names": true,    
+    "font-weight-notation": "numeric",
+    "function-max-empty-lines": 5,
+    "function-url-no-scheme-relative": true,
+    "function-url-quotes": "always",
+    "length-zero-no-unit": true,
+    "max-nesting-depth": 2,
+    "string-quotes": "single",
+  }
+}
