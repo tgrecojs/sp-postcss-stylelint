@@ -25,7 +25,7 @@ gulp.task('serve', function() {
         server: "./dest"
     });
     gulp.watch(input, ['style']);
-    gulp.watch('./dest/css/main.css').on('change', browserSync.reload);
+    gulp.watch('./dest/css/*.css').on('change', browserSync.reload);
 });
 
 gulp.task('check', function() {

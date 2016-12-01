@@ -1,4 +1,40 @@
+:root {
+    --fontSize: 1rem;
+    --fontType: 'Open Sans';
+    --bgColor: rebeccapurple;
+    --flex-row: {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+
 body {
-    background: #f99;
-    font-weight: bold;
+    width: 100%;
+    color: #ffffff;
+    font-family: var(--fontType);
+    font-size: var(--fontSize);
+    background:  var(--bgColor);
+}
+
+.flex-row {
+    @apply --flex-row;
+    div {
+     width: 500px;
+    }
+}
+
+h1 {
+  font-size: calc(var(--fontSize) * 2);
+}
+h2 {
+  font-size: alc(var(--fontSize) * 2.75);
+}
+h3 {
+  font-size: calc(var(--fontSize) * 2.25);
+}
+h4 {
+  font-size: calc(var(--fontSize) * 2);
 }

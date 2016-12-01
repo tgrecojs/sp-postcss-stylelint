@@ -2,7 +2,7 @@
   "rules": {
      "color-hex-case": "lower",
     "color-hex-length": "long",
-    "color-named": "always-where-possible",
+    "color-named": ["always-where-possible", { "severity": "warning" }],
     "color-no-invalid-hex": true,
     "font-family-name-quotes": "always-where-recommended",
     "font-family-no-duplicate-names": true,    
