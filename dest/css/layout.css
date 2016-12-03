@@ -1,6 +1,6 @@
 body {
     width: 100%;
-    color: #Fff;
+    color: #F9fff;
     font-family: 'Open Sans';
     font-size: 16px;
     font-size: 1rem;
@@ -9,9 +9,14 @@ body {
 
 
 .flex-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-            align-items: center;
-        justify-content: space-around;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     div {
      width: 500px;
     }

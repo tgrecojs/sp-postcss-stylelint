@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
-
+var calcFunction = require('postcss-calc-function');
+var atImport = require('postcss-import');
 /**
  * gulp postcss : https://www.npmjs.com/package/gulp-postcss
  */
@@ -9,6 +10,7 @@ var postcss = require('gulp-postcss');
 var cssnext = require('postcss-cssnext');
 var reporter = require('postcss-reporter');
 var browserReporter = require('postcss-browser-reporter');
+var autoprefixer = require('autoprefixer');
 
 var stylelint = require('gulp-stylelint');
 
@@ -31,19 +33,27 @@ gulp.task('serve', function() {
 gulp.task('check', function() {
     return gulp.src(input)
         .pipe(stylelint({
-            reporters: [{
-                formatter: 'verbose',
-                console: true
-            }]
+
         }))
 });
 
-gulp.task('style', ['check'], function() {
+gulp.task('style', function() {
     return gulp.src(input)
-        .pipe(postcss([
-            require('postcss-cssnext'),
-        ]))
-        .pipe(gulp.dest(output))
+        .pipe(postcss(
+            [
+               atImport({
+                    plugins: [
+                        require("stylelint")({
+                            reporters: [{
+                                formatter: 'verbose',
+                                console: true
+                            }]
+                        })
+                    ]
+                }),
+                reporter,
+                autoprefixer,
+            ]
+        )).pipe(gulp.dest(output));
 });
-
 gulp.task('default', ['serve']);
