@@ -1,18 +1,11 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
-var calcFunction = require('postcss-calc-function');
-var atImport = require('postcss-import');
-/**
- * gulp postcss : https://www.npmjs.com/package/gulp-postcss
- */
 var postcss = require('gulp-postcss');
-
-var cssnext = require('postcss-cssnext');
+var atImport = require('postcss-import');
+var stylelint = require('stylelint');
 var reporter = require('postcss-reporter');
 var browserReporter = require('postcss-browser-reporter');
 var autoprefixer = require('autoprefixer');
-
-var stylelint = require('gulp-stylelint');
 
 /** 
  * file paths stored in variables
@@ -30,30 +23,19 @@ gulp.task('serve', function() {
     gulp.watch('./dest/css/*.css').on('change', browserSync.reload);
 });
 
-gulp.task('check', function() {
-    return gulp.src(input)
-        .pipe(stylelint({
-
-        }))
-});
 
 gulp.task('style', function() {
     return gulp.src(input)
-        .pipe(postcss(
-            [
-               atImport({
-                    plugins: [
-                        require("stylelint")({
-                            reporters: [{
-                                formatter: 'verbose',
-                                console: true
-                            }]
-                        })
-                    ]
-                }),
-                reporter,
-                autoprefixer,
-            ]
-        )).pipe(gulp.dest(output));
+        .pipe(postcss([
+            stylelint({
+                reporters: [{
+                    formatter: 'verbose',
+                    console: true
+                }, ]
+            }),
+            reporter({
+                clearMessages: true
+            })
+        ])).pipe(gulp.dest(output));
 });
 gulp.task('default', ['serve']);
